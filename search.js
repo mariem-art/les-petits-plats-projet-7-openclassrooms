@@ -34,16 +34,17 @@ btnSearch.addEventListener("click", function searchBar(recipes) {
       messageError.textContent = "Le champ doit contenir uniquement des lettres.";
   } else {
       let searchResults = [];
-      for (let i = 0; i < recipes.length; i++) {
+      for (let i = 0; i < recipes[i].length; i++) {
           searchResults.push(inputValue);
       }
       console.log(searchResults);
+      displaySearchResults([]);
       displaySearchResults(searchResults); // Afficher les résultats de recherche
   }
 });
-
 // search Ingredient
-inputIngredient.addEventListener("input", function searchIng(recipes) {
+
+function searchIng(recipes) {
   const inputIngredientValue = inputIngredient.value.trim().toLowerCase();
   let searchResults = [];
   for (let i = 0; i < recipes.length; i++) {
@@ -56,11 +57,16 @@ inputIngredient.addEventListener("input", function searchIng(recipes) {
       }
   }
   console.log(searchResults);
+  displaySearchResults([]);
   displaySearchResults(searchResults); // Afficher les résultats de recherche
+}
+// Appel de la fonction searchIng
+inputIngredient.addEventListener("input", function () {
+  searchIng(recipes);
 });
 
 // search Appliance
-inputAppliance.addEventListener("input", function searchApp(recipes) {
+ function searchApp(recipes) {
   const inputApplianceValue = inputAppliance.value.trim().toLowerCase();
   let searchResults = [];
   for (let i = 0; i < recipes.length; i++) {
@@ -70,11 +76,15 @@ inputAppliance.addEventListener("input", function searchApp(recipes) {
       }
   }
   console.log(searchResults);
+  displaySearchResults([]);
   displaySearchResults(searchResults); // Afficher les résultats de recherche
+}
+// Appel de la fonction Appliance
+inputAppliance.addEventListener("input", function () {
+  searchApp(recipes);
 });
-
 // search Ustensils
-inputUstensils.addEventListener("input", function searchUst(recipes) {
+function searchUst(recipes) {
   const inputUstensilsValue = inputUstensils.value.trim().toLowerCase();
   let searchResults = [];
   for (let i = 0; i < recipes.length; i++) {
@@ -84,8 +94,13 @@ inputUstensils.addEventListener("input", function searchUst(recipes) {
           if (ustensil.includes(inputUstensilsValue)) {
               searchResults.push(ustensil);
           }
-      }
-  }
+       }
   console.log(searchResults);
+  displaySearchResults([]);
   displaySearchResults(searchResults); // Afficher les résultats de recherche
+      }
+    }
+// Appel de la fonction searchIng
+inputUstensils.addEventListener("input", function () {
+  searchUst(recipes);
 });

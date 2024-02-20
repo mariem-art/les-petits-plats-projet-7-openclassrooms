@@ -216,7 +216,9 @@ article{
    flex-wrap: wrap;
    margin:0;
    list-style-type:none;
-
+}
+ul{
+    list-style-type:none;
 }
 .Liste li{
     font-family: Manrope;
@@ -228,7 +230,10 @@ article{
     width: 48%;
     margin-left:-15px;
 }
-
+li {
+    background: white;
+    margin:5px;
+}
 .Liste p.quantie{
     font-family: Manrope;
     font-weight: 400;

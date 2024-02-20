@@ -11,9 +11,9 @@
       }
 
 //appeller le searchIng de l'ingredient,appliance,ustensils
-searchIng();
-searchApp();
-searchUst();
+//searchIng();
+//searchApp();
+//searchUst();
 
 
       async function init() {
@@ -40,26 +40,23 @@ searchUst();
     }
     
     // Appeler la fonction d'initialisation
-    //initializeSearch();
-
-
-// Fonction pour afficher les résultats de recherche dans la classe .choix-recette
+   // initializeSearch();
+ // Fonction pour afficher les résultats de recherche dans la classe .choix-recette
 function displaySearchResults(results) {
-    const choixRecette = document.querySelector(".choix-recette");
-    // Nettoyer le contenu précédent
-    choixRecette.innerHTML = "";
-    // Créer une liste ul pour contenir les résultats
-    const resultList = document.createElement("ul");
-    // Ajouter chaque résultat comme un élément de liste li
-    results.forEach(result => {
-        const listItem = document.createElement("li");
+   const choixRecette = document.querySelector(".choix-recette");
+ // Nettoyer le contenu précédent
+ choixRecette.innerHTML = "";
+//Créer une liste ul pour contenir les résultats
+ const resultList = document.createElement("ul");
+  // Ajouter chaque résultat comme un élément de liste li
+  results.forEach(result => {
+      const listItem = document.createElement("li");
         listItem.textContent = result;
-        resultList.appendChild(listItem);
-    });
-
-    // Ajouter la liste de résultats à la classe .choix-recette
-    choixRecette.appendChild(resultList);
-}
-// Appeler la fonction displaySearchResults avec vos résultats de recherche
-const results = [" "]; 
+       resultList.appendChild(listItem);
+   });
+// Ajouter la liste de résultats à la classe .choix-recette
+     choixRecette.appendChild(resultList);
+ }
+ // Appeler la fonction displaySearchResults avec vos résultats de recherche
+ const results = [" "]; 
 displaySearchResults(results);
