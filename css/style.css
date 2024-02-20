@@ -1,0 +1,239 @@
+/**********body***************/
+
+body {
+    margin: 0;
+    background:rosybrown!important;
+}
+/***********header***************/
+header{
+    margin-bottom: 20px;
+}
+
+.header-tout {
+    position: relative;
+}
+/***********logo***************/
+.logo {
+    position: absolute;
+    top: 3%;
+    left: 69px;
+    width: 207px;
+    height: 25.261px;
+
+}
+img.logo-header{
+    width: 100%;
+    height: auto;
+}
+/***********titre-header***************/
+.titre-header{
+    position: absolute;
+    top: 31%;
+    left:24%;
+}
+h1{
+    color: #FFD15B!important;
+    text-align: center;
+    font-family: Anton;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 66.24px;
+}
+/**********search***************/
+.search {
+    position: absolute;
+    left: 17%;
+    bottom: 30%;
+}
+form.d-flex{
+    width: 954px;
+    height: 72px;
+    border:none;
+    position: relative;
+}
+.form-control{
+    width: 954px;
+    height: 72px;
+}
+
+input.form-control::placeholder{
+    color: #7A7A7A;
+    font-size: 16px;
+    line-height: 21.86px;
+    margin:24px 0 0 35px;
+}
+button.btn.btn-outline-success{
+    width: 51px;
+    height: 52px;
+    margin-left: -60px;
+    background:#1B1B1B;
+    color:white;
+    border:none;
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+}
+.fa-magnifying-glass:before, .fa-search:before {
+    width: 27px;
+    height: 28px;
+}
+button.btn.btn-outline-success:hover{
+    background:#FFD15B;
+    color:#1B1B1B;
+}
+.message-error.container{
+    position: absolute;
+    bottom: 0;
+    left: 17%;
+    bottom: 25%;
+    color:#FFD15B ;
+}
+/**************main******************/
+main{
+    padding:20px 50px;
+}
+/**************class-choix*************/
+.class-choix {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+input#myInput-ing, input#myInputApp, input#myInputUst{
+    width: 195px;
+    height: 56px;
+    padding: 17px 16px 17px 16px;
+    border-radius: 11px;
+    display: inline-flex;
+    padding: 17px 16px;
+    align-items: center;
+    gap: 63px;
+    border:none;
+    background:white;
+}
+option{
+    color:#1B1B1B;
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.83px;
+}
+/************nb-recette*************/
+.nb-recette{
+        position: absolute;
+        right: 84px;
+}
+.nb-recette p{
+    color:#1B1B1B;
+    font-family: Anton;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 31.61px;
+}
+
+/********choix-recette ********/
+.choix-recette {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(3,3fr);
+}
+/**********article************/
+article{
+    width: 380px;
+    height: 750px;
+    border-radius: 21px;
+    background:white;
+    position: relative;
+}
+.img{
+    width: 380px;
+    height: 253px;
+    margin-bottom: 20px;
+}
+.img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 21px 21px 0 0;
+    object-fit: cover;
+}
+.time{
+    position: absolute;
+    margin: 0;
+    right:21px;
+    top:21px;
+    border-radius: 20px;
+    background:#FFD15B;
+}
+.time p{
+    padding: 5px 15px;
+    margin: 0;
+    font-family:Manrope;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16.39px;
+    text-align: center;
+    color:#1B1B1B;
+}
+.titre-article h2{
+  font-family:Anton;
+  font-weight: 400; 
+  font-size:18px;
+  line-height:27.1px;
+  color:#000000; 
+  padding: 0 0 0 24px;
+}
+.descreption h3{
+    color:#7A7A7A;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 16.93px;
+    letter-spacing: 1px;
+    padding: 0 0 0 24px;
+}
+.descreption p {
+    font-family: manrope;
+    font-weight: 400;
+    font-size:14px;
+    line-height: 19.12px;
+    color:#1B1B1B;
+    padding: 0 0 0 24px;
+    margin:0;
+}
+.Liste{
+    height: auto;
+    font-family: Manrope;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16.39px;
+    letter-spacing: 1px;
+    color:#7A7A7A;
+    text-transform: uppercase;
+    padding: 0 0 0 24px;
+    margin: 5px 0 5px 0;
+}
+.Liste ul{
+   display: flex;
+   flex-wrap: wrap;
+   margin:0;
+   list-style-type:none;
+
+}
+.Liste li{
+    font-family: Manrope;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19.12px;
+    color:#1B1B1B;
+    text-transform: initial;
+    width: 48%;
+    margin-left:-15px;
+}
+
+.Liste p.quantie{
+    font-family: Manrope;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19.12px;
+    color: #7A7A7A;
+    text-transform: initial;
+}
