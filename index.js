@@ -1,62 +1,80 @@
+
+
 //récupérer les données de fihier recettes.js
-
-      async function displayRecipes(recipes) {
-          const recettSection = document.querySelector(".choix-recette");
-          recipes.forEach((recipes) => {
-              const recettModel = recettTemplate(recipes);
-              const userCardDOM = recettModel.getUserCardDOM();
-              recettSection.appendChild(userCardDOM);
-
-          });
-      }
-
-//appeller le searchIng de l'ingredient,appliance,ustensils
-//searchIng();
-//searchApp();
-//searchUst();
-
-
-      async function init() {
-          // Récupère les datas des photographes
-          displayRecipes(recipes);
-      }
-      init();   
+async function displayRecipes(recipes) {
+  const recettSection = document.querySelector(".choix-recette");
+   const recipeCountElement = document.getElementById('nb');
+   recipeCountElement.textContent = recipes.length;
+  recipes.forEach((recipes) => {
+      const recettModel = recettTemplate(recipes);
+      const userCardDOM = recettModel.getUserCardDOM();
+      recettSection.appendChild(userCardDOM);
+  });
+}
+async function init() {
+  // Récupère les datas des photographes
+  displayRecipes(recipes);
+}
+init();   
+//search
+async function getRecipe() { 
+ let newDataReciepes = recipes;
+ return newDataReciepes;
+}
 
 
-      //search
+// Appeler la fonction pour récupérer les recettes et ensuite appeler searchBar
 
-      async function getRecipe() { 
-         let newDataReciepes = recipes;
-         return newDataReciepes;
-        }
-    
-    // Appeler la fonction pour récupérer les recettes et ensuite appeler searchBar
+async function initializeSearch() {
+// Récupérer les recettes
+const allRecipes = await getRecipe();
+// Appeler searchBar avec les recettes récupérées
+searchBar(allRecipes);
 
-    async function initializeSearch() {
-        // Récupérer les recettes
-        const allRecipes = await getRecipe();
-       // Appeler searchBar avec les recettes récupérées
-       searchBar(allRecipes);
-    }
-    
-    // Appeler la fonction d'initialisation
-   // initializeSearch();
- // Fonction pour afficher les résultats de recherche dans la classe .choix-recette
-function displaySearchResults(results) {
-   const choixRecette = document.querySelector(".choix-recette");
- // Nettoyer le contenu précédent
- choixRecette.innerHTML = "";
-//Créer une liste ul pour contenir les résultats
- const resultList = document.createElement("ul");
-  // Ajouter chaque résultat comme un élément de liste li
+}
+
+// Appeler la fonction d'initialisation
+//initializeSearch();
+
+// Résultat option Ingrédient 
+function displaySearchResultsIng(results) {
+  const optionContainerIng = document.getElementById(".option-choix-Ing");
+  optionContainerIng.innerHTML = "";
   results.forEach(result => {
-      const listItem = document.createElement("li");
-        listItem.textContent = result;
-       resultList.appendChild(listItem);
-   });
-// Ajouter la liste de résultats à la classe .choix-recette
-     choixRecette.appendChild(resultList);
+    const optionButtonIng = document.createElement("button");
+    optionButtonIng.classList.add("option-button");
+    optionButtonIng.textContent = result;
+    optionButtonIng.addEventListener("click", function optIng() {
+      document.getElementById("myInput-ing").value = result;
+    });
+    optionContainerIng.appendChild(optionButtonIng);
+  });
+}
+// Résultat option appareil
+ function displaySearchResultsApp(results) {
+   const optionContainerApp = document.getElementById(".option-choix-App");
+    optionContainerApp.innerHTML = "";
+    results.forEach(result => {
+   const optionButton = document.createElement("button");
+   optionButton.classList.add("option-button");
+   optionButton.textContent = result;
+   optionButton.addEventListener("click", function optApp() {
+   document.getElementById("myInput-App").value = result;
+  });
+  optionContainerApp.appendChild(optionButton);
+  });
  }
- // Appeler la fonction displaySearchResults avec vos résultats de recherche
- const results = [" "]; 
-displaySearchResults(results);
+// Résultat option Ustensiles
+ function displaySearchResultsUst(results) {
+  const optionContainerUst = document.getElementById(".option-choix-Ust");
+  optionContainerUst.innerHTML = "";
+  results.forEach(result => {
+  const optionButton = document.createElement("button");
+  optionButton.classList.add("option-button");
+  optionButton.textContent = result;
+  optionButton.addEventListener("click", function optUst() {
+  document.getElementById("myInput-Ust").value = result;
+  });
+   optionContainerUst.appendChild(optionButton);
+ });
+ }

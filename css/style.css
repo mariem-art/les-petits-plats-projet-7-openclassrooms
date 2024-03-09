@@ -11,6 +11,10 @@ header{
 
 .header-tout {
     position: relative;
+    width: 100%;
+}
+img, svg{
+    width: 100%;
 }
 /***********logo***************/
 .logo {
@@ -19,7 +23,6 @@ header{
     left: 69px;
     width: 207px;
     height: 25.261px;
-
 }
 img.logo-header{
     width: 100%;
@@ -55,7 +58,6 @@ form.d-flex{
     width: 954px;
     height: 72px;
 }
-
 input.form-control::placeholder{
     color: #7A7A7A;
     font-size: 16px;
@@ -97,10 +99,22 @@ main{
     position: relative;
     margin-bottom: 40px;
 }
+/********dropdown ******/
+.dropdown {
+    z-index: 10;
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+} 
+div#myDropdown{
+     position: relative;
+}
+.rotate {
+    transform: rotate(180deg);
+}
 
-input#myInput-ing, input#myInputApp, input#myInputUst{
+button.btn_drop{
     width: 195px;
-    height: 56px;
     padding: 17px 16px 17px 16px;
     border-radius: 11px;
     display: inline-flex;
@@ -109,18 +123,74 @@ input#myInput-ing, input#myInputApp, input#myInputUst{
     gap: 63px;
     border:none;
     background:white;
+    display: block;
 }
-option{
-    color:#1B1B1B;
+.option-choix li{
     font-family: Manrope;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 21.83px;
+    color:#1B1B1B;
+    height: 19px;
+}
+.option-choix li:hover{
+    background:#FFD15B;
+    height: 37px;
+}
+.option-choix {
+    display: flex;
+    flex-direction: column;
+    height: 221px;
+    background: white;
+    text-align: left;
+    overflow: auto;
+}
+.option-choix ul{
+    list-style-type:none;
+    padding-left:5px!important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.liste-choix{
+    display: none!important ;
+}
+.liste-choix{
+    display: block;
+    margin-left:-14px;
+    margin-top: 10px;
+   
+}
+input#myInput-ing, input#myInput-App,input#myInput-Ust{
+    border:1px solid  Grey;
+    height: 36px;
+    border-radius: 2px;
+    width: 163px;
+    margin-left: 0;
+    font-family: Manrope;
+    font-weight: 400;
+    font-size: 14px;
+    color:#7A7A7A; 
+    line-height:19.12px;
+    position: relative;
+}
+
+div#liste-choix-Ing.show i.fa.fa-search,div#liste-choix-App.show i.fa.fa-search,div#liste-choix-Ust.show i.fa.fa-search{
+    position: absolute;
+    top: 19%;
+    left: 58%;
+    color:#7A7A7A;
+}
+div#liste-choix-Ing.liste-choix.show,div#liste-choix-App.liste-choix.show,div#liste-choix-Ust.liste-choix.show {
+    display: block!important;
+  }
+.Button.little-search{
+    border:none;
 }
 /************nb-recette*************/
 .nb-recette{
-        position: absolute;
-        right: 84px;
+    position: absolute;
+    right: 84px;
 }
 .nb-recette p{
     color:#1B1B1B;
@@ -129,7 +199,6 @@ option{
     font-weight: 400;
     line-height: 31.61px;
 }
-
 /********choix-recette ********/
 .choix-recette {
     display: grid;
@@ -194,7 +263,7 @@ article{
     font-family: manrope;
     font-weight: 400;
     font-size:14px;
-    line-height: 19.12px;
+    line-height: 17.12px;
     color:#1B1B1B;
     padding: 0 0 0 24px;
     margin:0;
@@ -208,7 +277,7 @@ article{
     letter-spacing: 1px;
     color:#7A7A7A;
     text-transform: uppercase;
-    padding: 0 0 0 24px;
+    padding: 0 0 0 25px;
     margin: 5px 0 5px 0;
 }
 .Liste ul{
@@ -216,9 +285,7 @@ article{
    flex-wrap: wrap;
    margin:0;
    list-style-type:none;
-}
-ul{
-    list-style-type:none;
+   padding-left: 14px;
 }
 .Liste li{
     font-family: Manrope;
@@ -230,14 +297,10 @@ ul{
     width: 48%;
     margin-left:-15px;
 }
-li {
-    background: white;
-    margin:5px;
-}
 .Liste p.quantie{
     font-family: Manrope;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 19.12px;
     color: #7A7A7A;
     text-transform: initial;

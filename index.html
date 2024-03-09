@@ -43,33 +43,56 @@
       <div class="class-choix">
       <div class="row">
         <div class="col-md-3  col-sm-12">
-          <div class="dropdown">
-            <div id="myDropdown" placeholder="Ingrédients" class="dropdown-content">
-            <input type="text" placeholder="" id="myInput-ing" onkeyup="searchIng()"class="Button-ing little-search" >
+              <div class="dropdown">
+                <div id="myDropdown" class="dropdown-content">
+                  <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                      <span id="myDropdown">Ingrédients</span>
+                      <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                      <div class="liste-choix-Ing" id="liste-choix-Ing">
+                      <input type="search" placeholder="" id="myInput-ing"  class="Button little-search"  aria-hidden="true">
+                      <i class= "fa fa-search"></i>
+                      <div class="option-choix-Ing"></div>
+                    </div>
+                  </button>
+                </div>
+                </div>
+          </div>
+          <div class="col-md-3  col-sm-12">
+            <div class="dropdown">
+              <div id="myDropdown" class="dropdown-content">
+                <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                    <span id="myDropdown">Appareils</span>
+                    <span class="fa-solid fa-chevron-up App" aria-hidden="true"></span>
+                    <div class="liste-choix-App" id="liste-choix-App"> 
+                      <input type="search" placeholder="" id="myInput-App"  class="Button little-search" display="none"  aria-hidden="true">
+                      <i class= "fa fa-search"></i>
+                    <div class="option-choix-App" id="liste-choix"></div>
+                    </div>
+                </button>
+              </div>
+              </div>
             </div>
-        </div>
-        </div>
-      <div class="col-md-3">
-        <div class="dropdown">
-          <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Appareils" id="myInputApp" onkeyup="searchApp()" class="Button-App little-search" >
-          </div>
+        <div class="col-md-3  col-sm-12">
+          <div class="dropdown">
+            <div id="myDropdown" class="dropdown-content">
+              <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                  <span id="myDropdown">Ustensiles</span>
+                  <span class="fa-solid fa-chevron-up Ust" aria-hidden="true"></span>
+                  <div class="liste-choix-Ust" id="liste-choix-Ust">
+                  <input type="search" placeholder="" id="myInput-Ust" class="Button little-search" display="none"  aria-hidden="true">
+                  <i class= "fa fa-search"></i>
+                  <div class="option-choix-Ust"></div>
+                  </div>
+              </button>
+            </div>
+            </div>
       </div>
-      </div>
-      <div class="col-md-3">
-        <div class="dropdown">
-          <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Ustensiles" id="myInputUst" onkeyup="searchUst()" class="Button-Ust little-search" >
-          </div>
-      </div>
-    </div>
       </div>
       <div class="nb-recette">
-        <p>1500 recettes</p>
+        <span class="nb" id="nb"> </span><p>recettes</p>
       </div>
       </div>
       <div class="choix-recette">
-        
       </div>
         </main>
         <script src="./recettes.js"></script>
