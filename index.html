@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   </head>
   <body>
@@ -33,7 +32,9 @@
         <div class="search">
           <form class="d-flex" role="search">
             <input class="form-control" type="search"  id ="myInput" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Search">
-            <button class="btn btn-outline-success" type="button" id="btn-search"><i class="fa fa-search"></i></button>
+            <button class="btn btn-outline-success" type="button" id="btn-search"><i class="fa fa-search"></i>
+           
+            </button>
           </form>
         </div>
         <div class="message-error container"></div>
@@ -42,64 +43,69 @@
     <main id="main">
       <div class="class-choix">
       <div class="row">
-        <div class="col-md-3  col-sm-12">
+        <div class="col-md-3  col-sm-4 col-sx-12">
               <div class="dropdown">
                 <div id="myDropdown" class="dropdown-content">
                   <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
                       <span id="myDropdown">Ingrédients</span>
                       <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
                       <div class="liste-choix-Ing" id="liste-choix-Ing">
+                        <div class="search-input">
                       <input type="search" placeholder="" id="myInput-ing"  class="Button little-search"  aria-hidden="true">
-                      <i class= "fa fa-search"></i>
-                      <div class="option-choix-Ing"></div>
+                      <i class= "fa fa-search"></i></div>
+                      <div class="option-choix-Ing" id="liste-choix-Ing"></div>
                     </div>
                   </button>
                 </div>
                 </div>
           </div>
-          <div class="col-md-3  col-sm-12">
+          <div class="col-md-3  col-sm-4 col-sx-12">
             <div class="dropdown">
               <div id="myDropdown" class="dropdown-content">
                 <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
                     <span id="myDropdown">Appareils</span>
                     <span class="fa-solid fa-chevron-up App" aria-hidden="true"></span>
                     <div class="liste-choix-App" id="liste-choix-App"> 
+                      <div class="search-input">
                       <input type="search" placeholder="" id="myInput-App"  class="Button little-search" display="none"  aria-hidden="true">
-                      <i class= "fa fa-search"></i>
-                    <div class="option-choix-App" id="liste-choix"></div>
+                      <i class= "fa fa-search"></i></div>
+                    <div class="option-choix-App" id="liste-choix-App"></div>
                     </div>
                 </button>
               </div>
               </div>
             </div>
-        <div class="col-md-3  col-sm-12">
+        <div class="col-md-3  col-sm-4 col-sx-12">
           <div class="dropdown">
             <div id="myDropdown" class="dropdown-content">
               <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
                   <span id="myDropdown">Ustensiles</span>
                   <span class="fa-solid fa-chevron-up Ust" aria-hidden="true"></span>
                   <div class="liste-choix-Ust" id="liste-choix-Ust">
+                    <div class="search-input">
                   <input type="search" placeholder="" id="myInput-Ust" class="Button little-search" display="none"  aria-hidden="true">
-                  <i class= "fa fa-search"></i>
-                  <div class="option-choix-Ust"></div>
+                  <i class= "fa fa-search"></i></div>
+                  <div class="option-choix-Ust" id="liste-choix-Ust"></div>
                   </div>
               </button>
             </div>
             </div>
       </div>
       </div>
+      <div class="filter"></div>
       <div class="nb-recette">
         <span class="nb" id="nb"> </span><p>recettes</p>
       </div>
       </div>
+    
       <div class="choix-recette">
       </div>
         </main>
         <script src="./recettes.js"></script>
+      
         <script src ="./value.js"></script>
         <script src ="./search.js"></script>
         <script src="./script.js"></script>
         <script src="./index.js"></script>
     </body>
-    
     </html>
