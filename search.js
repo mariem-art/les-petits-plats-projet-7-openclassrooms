@@ -1,94 +1,51 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//   // Définition de la fonction displaySearchResults
-//   function displaySearchResults(results, containerClass, inputId) {
-//       const container = document.querySelector("." + containerClass);
-//       const inputElement = document.getElementById(inputId); // Sélectionnez l'élément d'entrée par son ID
-//       if (container && inputElement) {
-//           container.innerHTML = "";
-//           const resultList = document.createElement("ul");
-
-//           results.forEach(result => {
-//               const listItem = document.createElement("li");
-
-//               listItem.addEventListener("click", function() {
-//                   inputElement.value = result; // Mettez à jour la valeur de l'élément d'entrée
-//                   const filterElement = document.createElement('div');
-//                   filterElement.classList.add('filter');
-//                   filterElement.textContent = result;
-//                   // Ajoutez le nouveau filtre à l'élément parent
-//                   container.appendChild(filterElement);
-//               });
-//               listItem.textContent = result;
-//               resultList.appendChild(listItem);
-//           });
-//           container.appendChild(resultList);
-
-//       }
-//   }
-// document.addEventListener("DOMContentLoaded", function() {
-//   //Définition de la fonction displaySearchResults
-//   function displaySearchResults(results, containerClass,inputId) {
-//     const choixRecette = document.querySelector("." + containerClass);
-//     const inputElement = document.getElementById(inputId);
-//     if (choixRecette) {
-//       choixRecette.innerHTML = "";
-//       const resultList = document.createElement("ul");
-//       results.forEach(result => {
-//        const listItem = document.createElement("li");
-//        listItem.addEventListener("click", function() {
-//         inputElement.value = result; 
-//         const filterElement = document.createElement('div');
-//         filterElement.classList.add('filter');
-//         filterElement.textContent = result;
-//         // Ajoutez le nouveau filtre à l'élément parent
-//         choixRecette.appendChild(filterElement);
-//       });
-//         listItem.textContent = result;
-//         resultList.appendChild(listItem);
-//       });
-//       choixRecette.appendChild(resultList);
-     
-//     }
-//   }
 document.addEventListener("DOMContentLoaded", function() {
+  // Déclaration de selectedTags en tant que variable globale
+  const selectedTags = [];
+  // Déclaration de selectTag en tant que variable globale
+  const selectTag = document.querySelector(".filter");
+
   // Définition de la fonction displaySearchResults
   function displaySearchResults(results, containerClass, inputId) {
-    const choixRecette = document.querySelector("." + containerClass);
+    const container = document.querySelector("." + containerClass);
     const inputElement = document.getElementById(inputId);
-    if (choixRecette) {
-      choixRecette.innerHTML = "";
+    if (container) {
+      selectTag.innerHTML = "";
       const resultList = document.createElement("ul");
       results.forEach(result => {
         const listItem = document.createElement("li");
         listItem.textContent = result;
         listItem.addEventListener("click", function() {
-        inputElement.value = result;
-        
-        const filterElement = document.createElement('div');
-        filterElement.classList.add('filter');
-        filterElement.textContent = result;
-        // Ajoutez le nouveau filtre à l'élément parent
-        choixRecette.appendChild(filterElement);
+          inputElement.value = result;
+          const filterElement = document.createElement('div');
+          filterElement.classList.add('tag');
+          const btnX = document.createElement("i");
+          btnX.className = "fa-solid fa-xmark close-tag";
+          btnX.addEventListener('click', function(event) {
+            event.stopPropagation(); // Empêche le clic de se propager au parent
+            closetag(btnX);
+          });
+          filterElement.textContent = result;
+          // Ajoutez le nouveau filtre à l'élément parent
+          selectTag.appendChild(filterElement);
+          filterElement.appendChild(btnX);
         });
         resultList.appendChild(listItem);
       });
-      choixRecette.appendChild(resultList);
+      container.appendChild(resultList);
     }
   }
 
+  // searchBar
+  const btnSearch = document.getElementById('btn-search');
+  // Événement pour déclencher la recherche lors du clic sur le bouton de recherche
+  if (btnSearch) {
+    btnSearch.addEventListener('click', function() {
+      const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
+      searchBar(recipes, inputValue);
+    });
+  }
 
-   // searchBar
-   const btnSearch = document.getElementById('btn-search');
-   // Événement pour déclencher la recherche lors du clic sur le bouton de recherche
-   if (btnSearch) {
-     btnSearch.addEventListener('click', function() {
-       const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
-      
-       searchBar(recipes, inputValue);
-
-     });
-   }
-   function searchBar(recipes, inputValue) {
+  function searchBar(recipes, inputValue) {
     const messageError = document.querySelector(".message-error");
     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
     if (!regex.test(inputValue) && inputValue) {
@@ -106,12 +63,13 @@ document.addEventListener("DOMContentLoaded", function() {
       displaySearchResults(searchResults, "choix-tout");
     }
   }
-     
-//appel fuction search bar 
-btnSearch.addEventListener('click', function() {
-  // Appel de la fonction searchBar avec les recettes
-  searchBar(recipes);
-});
+
+  //appel function search bar 
+  btnSearch.addEventListener('click', function() {
+    // Appel de la fonction searchBar avec les recettes
+    searchBar(recipes);
+  });
+
   // search Ingredient
   const inputIngredient = document.getElementById('myInput-ing');
   function searchIng(recipes) {
@@ -127,8 +85,7 @@ btnSearch.addEventListener('click', function() {
       }
     }
     console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-Ing");
-
+    displaySearchResults(searchResults, "option-choix-Ing", "liste-choix-Ing");
   }
   // Appel de la fonction searchIng
   if (inputIngredient) {
@@ -149,7 +106,7 @@ btnSearch.addEventListener('click', function() {
       }
     }
     console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-App");
+    displaySearchResults(searchResults, "option-choix-App", "liste-choix-App");
   }
   // Appel de la fonction searchApp
   if (inputAppliance) {
@@ -173,40 +130,16 @@ btnSearch.addEventListener('click', function() {
       }
     }
     console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-Ust");
+    displaySearchResults(searchResults, "option-choix-Ust", "liste-choix-Ust");
   }
   // Appel de la fonction searchUst
   if (inputUstensils) {
     inputUstensils.addEventListener('keyup', function() {
       searchUst(recipes);
-   
     });
   }
+   //Action suppr Tag
+   function closetag(btnX) {
+    btnX.parentNode.remove(); // Supprime le tag parent du bouton "x"
+  }
 });
-  // Gestion des suggestions lors du clic sur un élément
-   //function onSuggestion(listItem) {
-  //  const isSelected = selectedTags.findIndex(
-  //     (selectedTag) => selectedTag === listItem.innerText
-  //   );
-  //   if (isSelected > -1) {
-  //     listItem.classList.remove(".filtrer");
-  //     selectedTags.splice(isSelected, 1);
-  //   } else {
-  //     listItem.classList.add(".filtrer");
-  //     selectedTags.push(listItem.innerText);
-  //   }
-  //   displayTags(listItem.innerText);
-  //   //updateSearchTags();
-  // }
-// Mise à jour de la recherche en fonction des tags sélectionnés
-// function updateSearchTags() {
-//   const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
-//   // Si des tags sont sélectionnés, filtrer les recettes en fonction des tags
-//   if (selectedTags.length > 0) {
-//     const filteredRecipes = filterRecipesByTags(allRecipes);
-//     searchBar(filteredRecipes, inputValue);
-//   } else {
-//     // Sinon, effectuer une recherche normale
-//     searchBar(allRecipes, inputValue);
-//   }
-// }
