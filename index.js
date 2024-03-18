@@ -14,6 +14,7 @@ async function displayRecipes(recipes) {
 async function init() {
   // Récupère les datas des photographes
   displayRecipes(recipes);
+  
 }
 init();   
 //search

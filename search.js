@@ -1,50 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Déclaration de selectedTags en tant que variable globale
-  const selectedTags = [];
-  // Déclaration de selectTag en tant que variable globale
+  
   const selectTag = document.querySelector(".filter");
-
-  // Définition de la fonction displaySearchResults
-  function displaySearchResults(results, containerClass, inputId) {
+  const selectedTags = [];
+  //fuction search
+  function displaySearchResults(results, containerClass) {
+    console.log("hello");
     const container = document.querySelector("." + containerClass);
-    const inputElement = document.getElementById(inputId);
     if (container) {
-      selectTag.innerHTML = "";
-      const resultList = document.createElement("ul");
-      results.forEach(result => {
-        const listItem = document.createElement("li");
-        listItem.textContent = result;
-        listItem.addEventListener("click", function() {
-          inputElement.value = result;
-          const filterElement = document.createElement('div');
-          filterElement.classList.add('tag');
-          const btnX = document.createElement("i");
-          btnX.className = "fa-solid fa-xmark close-tag";
-          btnX.addEventListener('click', function(event) {
-            event.stopPropagation(); // Empêche le clic de se propager au parent
-            closetag(btnX);
-          });
-          filterElement.textContent = result;
-          // Ajoutez le nouveau filtre à l'élément parent
-          selectTag.appendChild(filterElement);
-          filterElement.appendChild(btnX);
-        });
-        resultList.appendChild(listItem);
-      });
-      container.appendChild(resultList);
+        // Supprimer uniquement les éléments enfants de container
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        if (containerClass === "choix-recette") {
+            results.forEach(result => {
+                const recipe = recipes.find(recipe => recipe.name === result);
+                if (recipe) {
+                    const recipeCard = recettTemplate(recipe);
+                    const userCardDOM = recipeCard.getUserCardDOM();
+                    container.appendChild(userCardDOM);
+                }
+            });
+          } 
     }
-  }
-
-  // searchBar
+}
   const btnSearch = document.getElementById('btn-search');
-  // Événement pour déclencher la recherche lors du clic sur le bouton de recherche
   if (btnSearch) {
     btnSearch.addEventListener('click', function() {
       const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
       searchBar(recipes, inputValue);
     });
   }
-
   function searchBar(recipes, inputValue) {
     const messageError = document.querySelector(".message-error");
     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
@@ -52,94 +37,170 @@ document.addEventListener("DOMContentLoaded", function() {
       messageError.textContent = "Le champ doit contenir uniquement des lettres.";
     } else {
       const searchResults = recipes.filter(recipe => {
-        // Vérifier si le nom de la recette, les ingrédients ou les ustensiles contiennent la valeur de recherche
         return (
           recipe.name.toLowerCase().includes(inputValue) ||
           recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue)) ||
-          recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(inputValue))
+          recipe.ustensils.some(utensil => utensil.toLowerCase().includes(inputValue)) ||
+          recipe.appliance.toLowerCase().includes(inputValue)
         );
-      }).map(recipe => recipe.name);
-      console.log(searchResults);
-      displaySearchResults(searchResults, "choix-tout");
+      });
+      if (searchResults.length === 0) {
+        messageError.textContent = "Aucune recette trouvée pour cette recherche.";
+      } else {
+        messageError.textContent = "";
+        const recipeNames = searchResults.map(recipe => recipe.name);
+        displaySearchResults(recipeNames, "choix-recette");
+      }
     }
   }
 
-  //appel function search bar 
-  btnSearch.addEventListener('click', function() {
-    // Appel de la fonction searchBar avec les recettes
-    searchBar(recipes);
+  function searchInput(inputElement, result) {
+    const inputValue = inputElement.value.trim().toLowerCase();
+    const searchResults = result.filter(item => item.toLowerCase().includes(inputValue));
+    displayOptions(searchResults, inputElement.resultset.container);
+  }
+
+  const inputs = document.querySelectorAll('.search-input');
+  if (inputs) {
+    inputs.forEach(input => {
+      input.addEventListener('keyup', function() {
+        const result = input.resultset.type === 'ingredients' ? ingredients :
+                     input.resultset.type === 'appliances' ? appliances :
+                     utensils;
+        searchInput(input, result);
+      });
+    });
+  }
+ //fuction pour fermeture
+  function closetag(btnX) {
+    btnX.parentNode.remove();
+  }
+ //fuction afficher les listes des drop et filter 
+ function displayOptions(results, container, containerClass) {
+  const list = document.querySelector(container);
+  selectTag.innerHTML = "";
+  if (list) {
+      const resultList = document.createElement("ul");
+      results.forEach(item => {
+          const listItem = document.createElement("li");
+          listItem.textContent = item;
+          listItem.classList.add("liste");
+          listItem.addEventListener("click", function() {
+              const inputElement = document.getElementById(containerClass === "option-choix-Ing" ? "myInput-ing" : containerClass === "option-choix-App" ? "myInput-App" : "myInput-Ust");
+              inputElement.value = item; // Utiliser l'élément de la liste cliquée, pas le tableau entier
+              const filterElement = document.createElement('div');
+              filterElement.classList.add('tag');
+              const btnX = document.createElement("i");
+              btnX.className = "fa-solid fa-xmark close-tag";
+              btnX.addEventListener('click', function(event) {
+                  event.stopPropagation();
+                  closetag(btnX);
+              });
+              filterElement.textContent = item;
+              selectTag.appendChild(filterElement);
+              filterElement.appendChild(btnX);
+          });
+          resultList.appendChild(listItem);
+      });
+      list.appendChild(resultList);
+  }
+}
+  const ingredients = [];
+  const appliances = [];
+  const utensils = [];
+  recipes.forEach(recipe => {
+    recipe.ingredients.forEach(ingredient => {
+      if (!ingredients.includes(ingredient.ingredient)) {
+        ingredients.push(ingredient.ingredient);
+      }
+    });
+    if (!appliances.includes(recipe.appliance)) {
+      appliances.push(recipe.appliance);
+    }
+    recipe.ustensils.forEach(utensil => {
+      if (!utensils.includes(utensil)) {
+        utensils.push(utensil);
+      }
+    });
   });
 
-  // search Ingredient
-  const inputIngredient = document.getElementById('myInput-ing');
-  function searchIng(recipes) {
-    const inputIngredientValue = inputIngredient.value.trim().toLowerCase();
-    let searchResults = [];
-    for (let i = 0; i < recipes.length; i++) {
-      const recipeIngredients = recipes[i].ingredients;
-      for (let j = 0; j < recipeIngredients.length; j++) {
-        const ingredient = recipeIngredients[j].ingredient.toLowerCase();
-        if (ingredient.includes(inputIngredientValue)) {
-          searchResults.push(ingredient);
-        }
-      }
-    }
-    console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-Ing", "liste-choix-Ing");
-  }
-  // Appel de la fonction searchIng
-  if (inputIngredient) {
-    inputIngredient.addEventListener('keyup', function() {
-      searchIng(recipes);
-    });
-  }
+  displayOptions(ingredients, ".liste-choix-Ing");
+  displayOptions(appliances, ".liste-choix-App");
+  displayOptions(utensils, ".liste-choix-Ust");
 
-  // search Appliance
-  const inputAppliance = document.getElementById('myInput-App');
-  function searchApp(recipes) {
-    const inputApplianceValue = inputAppliance.value.trim().toLowerCase();
-    let searchResults = [];
-    for (let i = 0; i < recipes.length; i++) {
-      const recipeAppliance = recipes[i].appliance.toLowerCase();
-      if (recipeAppliance.includes(inputApplianceValue)) {
-        searchResults.push(recipeAppliance);
-      }
-    }
-    console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-App", "liste-choix-App");
-  }
-  // Appel de la fonction searchApp
-  if (inputAppliance) {
-    inputAppliance.addEventListener('keyup', function() {
-      searchApp(recipes);
-    });
-  }
 
-  // search Ustensils
-  const inputUstensils = document.getElementById('myInput-Ust');
-  function searchUst(recipes) {
-    const inputUstensilsValue = inputUstensils.value.trim().toLowerCase();
-    let searchResults = [];
-    for (let i = 0; i < recipes.length; i++) {
-      const recipeUstensils = recipes[i].ustensils;
-      for (let j = 0; j < recipeUstensils.length; j++) {
-        const ustensil = recipeUstensils[j].toLowerCase();
-        if (ustensil.includes(inputUstensilsValue)) {
-          searchResults.push(ustensil);
-        }
-      }
+
+  //fuction pour afficher les cards
+  function recettTemplate(recipe) {
+    const { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, image } = recipe;
+    const img = `./assets/Photos P7 JS Les petits plats/${image}`;
+    // Define the function to create the recipe card DOM
+    function getUserCardDOM() {
+        const article = document.createElement('article');
+        // Create image element
+        const imageCard = document.createElement('img');
+        imageCard.setAttribute("src", img);
+        const divInfo = document.createElement('div');
+        divInfo.setAttribute('class','img');
+        // Create time element
+        const divRecette = document.createElement('div');
+        divRecette.setAttribute('class','time');
+        const timeRecette = document.createElement('p');
+        timeRecette.textContent = `${time} min`;
+        // Create name element
+        const divNameRecette= document.createElement('div');
+        divNameRecette.setAttribute('class','titre-article');
+        const nameHeader = document.createElement('h2');
+        nameHeader.textContent = name;
+        // Create description element
+        const divDescript= document.createElement('div');
+        divDescript.setAttribute('class','descreption');
+        const titreRectte = document.createElement('h3');
+        titreRectte.textContent = "recette";
+        const descriptionCard = document.createElement('p');
+        descriptionCard.textContent = description;
+        // Create ingredients list
+        const DivListe = document.createElement('div');
+        DivListe.setAttribute('class','Liste');
+        const ingredientCard = document.createElement('p');
+        ingredientCard.textContent = 'Ingredients';
+        DivListe.appendChild(ingredientCard);
+        const ingredientsList = document.createElement('ul');
+        DivListe.appendChild(ingredientsList);
+        // Iterate over ingredients and create list items for each
+        ingredients.forEach(ingredient => {
+            const ingredientItem = document.createElement('li');
+            ingredientItem.setAttribute('class','ingredient');
+            ingredientItem.textContent = `${ingredient.ingredient}`; 
+            const quanItem = document.createElement('p');
+            quanItem.setAttribute('class','quantie');
+            if 
+            (ingredient.unit === undefined)
+              { 
+               quanItem.textContent = ingredient.quantity;
+             }
+             else 
+              {
+                quanItem.textContent =`${ingredient.quantity}  ${ingredient.unit} `;
+              }
+            ingredientsList.appendChild(ingredientItem);
+            ingredientItem.appendChild(quanItem);
+        });
+        // Append all elements to the article
+        article.appendChild(divInfo);
+        divInfo.appendChild(imageCard);
+        article.appendChild(divRecette);
+        divRecette.appendChild(timeRecette);
+        article.appendChild(divNameRecette);
+        divNameRecette.appendChild(nameHeader);
+        article.appendChild(divDescript);
+        divDescript.appendChild(titreRectte);
+        divDescript.appendChild(descriptionCard);
+        article.appendChild(DivListe);
+        DivListe.appendChild(ingredientsList);
+        return article;
     }
-    console.log(searchResults);
-    displaySearchResults(searchResults, "option-choix-Ust", "liste-choix-Ust");
-  }
-  // Appel de la fonction searchUst
-  if (inputUstensils) {
-    inputUstensils.addEventListener('keyup', function() {
-      searchUst(recipes);
-    });
-  }
-   //Action suppr Tag
-   function closetag(btnX) {
-    btnX.parentNode.remove(); // Supprime le tag parent du bouton "x"
-  }
+    // Return necessary properties and the function to create the card DOM
+    return { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, getUserCardDOM };
+}
 });

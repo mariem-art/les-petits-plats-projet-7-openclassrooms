@@ -1,6 +1,6 @@
 //Afficher les articles
-function recettTemplate(recett) {
-    const { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, image } = recett;
+function recettTemplate(recipe) {
+    const { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, image } = recipe;
     const img = `./assets/Photos P7 JS Les petits plats/${image}`;
     // Define the function to create the recipe card DOM
     function getUserCardDOM() {

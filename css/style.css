@@ -235,19 +235,19 @@ article{
     background:white;
     position: relative;
 }
-.img{
+.img {
     width: 380px;
     height: 253px;
     margin-bottom: 31px;
 }
-.img img {
+.img img{
     width: 100%;
     height: 100%;
     border-radius: 21px 21px 0 0;
     object-fit: cover;
     background-color: rgba(0, 0, 0, 0.04);
 }
-.time{
+.time {
     position: absolute;
     margin: 0;
     right:21px;
@@ -255,7 +255,7 @@ article{
     border-radius: 20px;
     background:#FFD15B;
 }
-.time p{
+.time p {
     padding: 5px 13px;
     margin: 0;
     font-family:Manrope;
@@ -273,7 +273,7 @@ article{
   color:rgba(0, 0, 0, 1); 
   padding: 0 0 0 24px;
 }
-.descreption h3{
+.descreption h3 {
     color:#7A7A7A;
     font-size: 12px;
     text-transform: uppercase;
@@ -282,7 +282,7 @@ article{
     letter-spacing: 1px;
     padding: 0 0 0 24px;
 }
-.descreption p {
+.descreption p{
     font-family: manrope;
     font-weight: 400;
     font-size:14px;
@@ -310,7 +310,7 @@ article{
    list-style-type:none;
    padding-left: 14px;
 }
-.Liste li{
+.Liste li {
     font-family: Manrope;
     font-weight: 500;
     font-size: 14px;
@@ -319,6 +319,7 @@ article{
     text-transform: initial;
     width: 48%;
     margin-left:-15px;
+    list-style-type:none;
 }
 .Liste p.quantie{
     font-family: Manrope;
@@ -334,6 +335,8 @@ article{
     display: flex;
     gap: 20px;
     margin-top:20px;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 .tag{
     background:rgba(255, 209, 91, 1);
