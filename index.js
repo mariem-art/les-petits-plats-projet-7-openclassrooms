@@ -3,13 +3,16 @@
 //récupérer les données de fihier recettes.js
 async function displayRecipes(recipes) {
   const recettSection = document.querySelector(".choix-recette");
-   const recipeCountElement = document.getElementById('nb');
-   recipeCountElement.textContent = recipes.length;
-  recipes.forEach((recipes) => {
+  const recipeCountElement = document.getElementById('nb');
+  recipeCountElement.textContent = recipes.length;
+  
+  for (const recipe of recipes) {
+   recipes.forEach((recipes) => {
       const recettModel = recettTemplate(recipes);
       const userCardDOM = recettModel.getUserCardDOM();
       recettSection.appendChild(userCardDOM);
-  });
+    });
+  }
 }
 async function init() {
   // Récupère les datas des photographes

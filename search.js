@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
   
   const selectTag = document.querySelector(".filter");
-  const selectedTags = [];
+  const selectdTags = [];
   //fuction search
   function displaySearchResults(results, containerClass) {
-    console.log("hello");
     const container = document.querySelector("." + containerClass);
     if (container) {
         // Supprimer uniquement les éléments enfants de container
@@ -20,7 +19,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     container.appendChild(userCardDOM);
                 }
             });
-          } 
+            // Mettre à jour le nombre de recettes affichées
+            const recipeCountElement = document.getElementById('nb');
+            recipeCountElement.textContent = results.length;
+        } else {
+            // Si aucun résultat n'est trouvé, afficher le nombre par défaut (0 ou autre valeur souhaitée)
+            const defaultRecipeCount =50;
+            const recipeCountElement = document.getElementById('nb');
+            recipeCountElement.textContent = defaultRecipeCount;
+        }
     }
 }
   const btnSearch = document.getElementById('btn-search');
@@ -77,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
  //fuction afficher les listes des drop et filter 
  function displayOptions(results, container, containerClass) {
-  const list = document.querySelector(container);
-  selectTag.innerHTML = "";
-  if (list) {
+   const list = document.querySelector(container);
+   selectTag.innerHTML = "";
+   if (list) {
       const resultList = document.createElement("ul");
       results.forEach(item => {
           const listItem = document.createElement("li");
@@ -103,8 +110,11 @@ document.addEventListener("DOMContentLoaded", function() {
           resultList.appendChild(listItem);
       });
       list.appendChild(resultList);
+     
+    }
   }
-}
+  //fuctin de tag 
+
   const ingredients = [];
   const appliances = [];
   const utensils = [];
@@ -127,9 +137,6 @@ document.addEventListener("DOMContentLoaded", function() {
   displayOptions(ingredients, ".liste-choix-Ing");
   displayOptions(appliances, ".liste-choix-App");
   displayOptions(utensils, ".liste-choix-Ust");
-
-
-
   //fuction pour afficher les cards
   function recettTemplate(recipe) {
     const { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, image } = recipe;
