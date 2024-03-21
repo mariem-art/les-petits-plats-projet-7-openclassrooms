@@ -1,120 +1,179 @@
 document.addEventListener("DOMContentLoaded", function() {
+  const selectedTags = []; //creer un tableau pour mettre les resultas de buttons 
   
+  const filterValues = [];//pour mettre les valeur filtre
+  let uniqueTags =[];
   const selectTag = document.querySelector(".filter");
-  const selectdTags = [];
   //fuction search
   function displaySearchResults(results, containerClass) {
     const container = document.querySelector("." + containerClass);
     if (container) {
-        // Supprimer uniquement les éléments enfants de container
+       // Supprimer uniquement les éléments enfants de container
         while (container.firstChild) {
             container.removeChild(container.firstChild);
         }
         if (containerClass === "choix-recette") {
-            results.forEach(result => {
-                const recipe = recipes.find(recipe => recipe.name === result);
-                if (recipe) {
-                    const recipeCard = recettTemplate(recipe);
-                    const userCardDOM = recipeCard.getUserCardDOM();
-                    container.appendChild(userCardDOM);
-                }
+           results.forEach(result => {
+             const recipe = recipes.find(recipe => recipe.name === result);
+             if (recipe) {
+               const recipeCard = recettTemplate(recipe);
+               const userCardDOM = recipeCard.getUserCardDOM();
+               container.appendChild(userCardDOM);
+              }
             });
             // Mettre à jour le nombre de recettes affichées
             const recipeCountElement = document.getElementById('nb');
             recipeCountElement.textContent = results.length;
-        } else {
+          } else {
             // Si aucun résultat n'est trouvé, afficher le nombre par défaut (0 ou autre valeur souhaitée)
             const defaultRecipeCount =50;
             const recipeCountElement = document.getElementById('nb');
             recipeCountElement.textContent = defaultRecipeCount;
+          }
         }
-    }
-}
-  const btnSearch = document.getElementById('btn-search');
-  if (btnSearch) {
-    btnSearch.addEventListener('click', function() {
-      const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
-      searchBar(recipes, inputValue);
-    });
-  }
-  function searchBar(recipes, inputValue) {
-    const messageError = document.querySelector(".message-error");
-    const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
-    if (!regex.test(inputValue) && inputValue) {
-      messageError.textContent = "Le champ doit contenir uniquement des lettres.";
-    } else {
-      const searchResults = recipes.filter(recipe => {
-        return (
-          recipe.name.toLowerCase().includes(inputValue) ||
-          recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue)) ||
-          recipe.ustensils.some(utensil => utensil.toLowerCase().includes(inputValue)) ||
-          recipe.appliance.toLowerCase().includes(inputValue)
-        );
+      }
+
+      //fuction search 
+    const btnSearch = document.getElementById('btn-search');
+    if (btnSearch) {
+     btnSearch.addEventListener('click', function() {
+       const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
+       searchBar(recipes, inputValue);
       });
-      if (searchResults.length === 0) {
-        messageError.textContent = "Aucune recette trouvée pour cette recherche.";
+    }
+   function searchBar(recipes, inputValue) {
+     const messageError = document.querySelector(".message-error");
+     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
+     if (!regex.test(inputValue) && inputValue) {
+       messageError.textContent = "Le champ doit contenir uniquement des lettres.";
       } else {
-        messageError.textContent = "";
-        const recipeNames = searchResults.map(recipe => recipe.name);
-        displaySearchResults(recipeNames, "choix-recette");
+       const searchResults = recipes.filter(recipe => {
+         console.log((
+          //chaque tags soit dans ing ou app ou ust 
+          uniqueTags.every(tag=>recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase())) ||
+          recipe.ustensils.some(utensil => utensil.toLowerCase().includes(tag.toLowerCase())) ||
+          recipe.appliance.toLowerCase().includes(tag.toLowerCase()) )
+        ) );
+         return (
+           recipe.name.toLowerCase().includes(inputValue) ||
+           recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue)) ||
+           recipe.ustensils.some(utensil => utensil.toLowerCase().includes(inputValue)) ||
+           recipe.appliance.toLowerCase().includes(inputValue) 
+          ) && (
+            //chaque tags soit dans ing ou app ou ust 
+            uniqueTags.every(tag=>recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase())) ||
+            recipe.ustensils.some(utensil => utensil.toLowerCase().includes(tag.toLowerCase())) ||
+            recipe.appliance.toLowerCase().includes(tag.toLowerCase()) )
+          ) ;
+
+        });
+        console.log(searchResults);
+        console.log(uniqueTags);
+        if (searchResults.length === 0) {
+           messageError.textContent = "Aucune recette trouvée pour cette recherche.";
+          } else {
+         messageError.textContent = "";
+         const recipeNames = searchResults.map(recipe => recipe.name);
+         displaySearchResults(recipeNames, "choix-recette");
+       }
       }
     }
-  }
-
-  function searchInput(inputElement, result) {
-    const inputValue = inputElement.value.trim().toLowerCase();
-    const searchResults = result.filter(item => item.toLowerCase().includes(inputValue));
-    displayOptions(searchResults, inputElement.resultset.container);
-  }
-
-  const inputs = document.querySelectorAll('.search-input');
-  if (inputs) {
-    inputs.forEach(input => {
-      input.addEventListener('keyup', function() {
+    //fuction pour les inputs ing/app/ust
+   function searchInput(inputElement, result) {
+     const inputValue = inputElement.value.trim().toLowerCase();
+     const searchResults = result.filter(item => item.toLowerCase().includes(inputValue));
+     displayOptions(searchResults, inputElement.resultset.container);
+    }
+   const inputs = document.querySelectorAll('.search-input');
+   if (inputs) {
+     inputs.forEach(input => {
+       console.log("test");
+       input.addEventListener('keyup', function() {
         const result = input.resultset.type === 'ingredients' ? ingredients :
-                     input.resultset.type === 'appliances' ? appliances :
-                     utensils;
+                       ingredients;
+                       input.resultset.type === 'appliances' ? appliances :
+                       appliances;
+                       input.resultset.type === 'utensils' ? utensils :
+                       utensils;
+
         searchInput(input, result);
+       });
       });
-    });
-  }
+    }
  //fuction pour fermeture
   function closetag(btnX) {
     btnX.parentNode.remove();
   }
- //fuction afficher les listes des drop et filter 
- function displayOptions(results, container, containerClass) {
-   const list = document.querySelector(container);
-   selectTag.innerHTML = "";
-   if (list) {
-      const resultList = document.createElement("ul");
-      results.forEach(item => {
-          const listItem = document.createElement("li");
-          listItem.textContent = item;
-          listItem.classList.add("liste");
-          listItem.addEventListener("click", function() {
-              const inputElement = document.getElementById(containerClass === "option-choix-Ing" ? "myInput-ing" : containerClass === "option-choix-App" ? "myInput-App" : "myInput-Ust");
-              inputElement.value = item; // Utiliser l'élément de la liste cliquée, pas le tableau entier
-              const filterElement = document.createElement('div');
-              filterElement.classList.add('tag');
-              const btnX = document.createElement("i");
-              btnX.className = "fa-solid fa-xmark close-tag";
-              btnX.addEventListener('click', function(event) {
-                  event.stopPropagation();
-                  closetag(btnX);
-              });
-              filterElement.textContent = item;
-              selectTag.appendChild(filterElement);
-              filterElement.appendChild(btnX);
-          });
-          resultList.appendChild(listItem);
-      });
-      list.appendChild(resultList);
-     
-    }
-  }
-  //fuctin de tag 
+  //const filterValues = displayFilterValues(document.querySelectorAll('.filter'));
+  function displayOptions(results, container, containerClass) {
+    const list = document.querySelector(container);
+    selectTag.innerHTML = "";
+    uniqueTags = Array.from(new Set(selectedTags));
 
+    if (list) {
+        const resultList = document.createElement("ul"); // Création de la liste des résultats
+        results.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = item;
+            listItem.classList.add("liste");
+            listItem.addEventListener("click", function() {
+                let inputElement;
+                if (containerClass === "option-choix-Ing") {
+                    inputElement = document.getElementById("myInput-ing");
+                } else if (containerClass === "option-choix-App") {
+                    inputElement = document.getElementById("myInput-App");
+                } else if (containerClass === "option-choix-Ust") {
+                    inputElement = document.getElementById("myInput-Ust");
+                } else {
+                    inputElement = null; // Affecter null plutôt que la chaîne vide
+                }
+                console.log(listItem);
+                //inputElement.value = item;
+                // Ajouter le tag seulement s'il est unique
+                const isDifferent = !uniqueTags.includes(item);
+                if (isDifferent) {
+
+                    uniqueTags.push(item);
+                    const filterElement = document.createElement('div');
+                    filterElement.classList.add('tag');
+                    const btnX = document.createElement("i");
+                    btnX.className = "fa-solid fa-xmark close-tag";
+                    btnX.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                        closetag(btnX);
+                    });
+                    filterElement.textContent = item;
+                    selectTag.appendChild(filterElement);
+                    filterElement.appendChild(btnX);
+                    const inputValue = document.getElementById('myInput').value.trim().toLowerCase();
+                    searchBar(recipes, inputValue);
+                    
+                }
+            });
+            resultList.appendChild(listItem); // Ajout de chaque élément de liste à la liste de résultats
+        });
+        list.appendChild(resultList);// Ajout de la liste de résultats à la liste principale 
+        console.log(list);
+        console.log("liste sans repetition");
+      }
+     // Après l'ajout de l'élément à la liste des tags uniques, appelez displayFilterValues
+    const filterValuesTags = displayFilterValues(results);
+    console.log("affiche tableau selection sans repitition");
+    console.log(filterValuesTags);
+  }
+  //fuction  de tag de filter pour afficher les cards
+
+   function displayFilterValues(listItem){
+     listItem.forEach(element => {
+       filterValues.push(element);
+      });
+      //supprime les repetitions de tag
+      const filterValuesTags = Array.from(new Set(filterValues));
+      console.log("lire fonction filter");
+      console.log(filterValuesTags); // Affiche les valeurs dans la console
+      return filterValuesTags;
+    } 
+  //fuction pour eliminer la repitition dans le filter
   const ingredients = [];
   const appliances = [];
   const utensils = [];
@@ -137,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
   displayOptions(ingredients, ".liste-choix-Ing");
   displayOptions(appliances, ".liste-choix-App");
   displayOptions(utensils, ".liste-choix-Ust");
-  //fuction pour afficher les cards
+  //function pour afficher les cards
   function recettTemplate(recipe) {
     const { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, image } = recipe;
     const img = `./assets/Photos P7 JS Les petits plats/${image}`;
@@ -209,5 +268,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     // Return necessary properties and the function to create the card DOM
     return { id, name, servings, ingredients, time, description, quantity, unit, appliance, ustensils, getUserCardDOM };
-}
+  }
+
 });
