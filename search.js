@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   const selectedTags = []; //creer un tableau pour mettre les resultas de buttons 
-  
   const filterValues = [];//pour mettre les valeur filtre
-  let uniqueTags =[];
+  let uniqueTags =[];//creer un tableau pour mettre les resultas tags
   const selectTag = document.querySelector(".filter");
   //fuction search
   function displaySearchResults(results, containerClass) {
@@ -41,6 +40,62 @@ document.addEventListener("DOMContentLoaded", function() {
        searchBar(recipes, inputValue);
       });
     }
+     // Fonction pour afficher les listes d'ingrédients et d'appareils correspondant au terme de recherche
+     function afficherListes(term) {
+      // Créer des ensembles pour stocker les ingrédients, les appareils et les ustensiles uniques
+       const ingredientsUniques = new Set();
+       const appareilsUniques = new Set();
+      const ustensilesUniques = new Set();
+
+      // Parcourir les recettes pour extraire les ingrédients, les appareils et les ustensiles correspondant au terme de recherche
+      recipes.forEach(recipe => {
+          if (recipe.name.toLowerCase().includes(term)) {
+              recipe.ingredients.forEach(ingredient => ingredientsUniques.add(ingredient.ingredient));
+              appareilsUniques.add(recipe.appliance);
+              recipe.ustensils.forEach(utensil => ustensilesUniques.add(utensil));
+          }
+      });
+     // Afficher les listes d'ingrédients, d'appareils et d'ustensiles
+     console.log("Ingrédients correspondant au terme de recherche :");
+
+     ingredientsUniques.forEach(ingredient => console.log(ingredient));
+     console.log(ingredientsUniques);
+     console.log("\nAppareils correspondant au terme de recherche :");
+     appareilsUniques.forEach(appareil => console.log(appareil));
+     console.log("\nUstensiles correspondant au terme de recherche :");
+     ustensilesUniques.forEach(ustensil => console.log(ustensil));
+    
+    //mettre les valeurs dans les classes pour l'afficher 
+    const listIng= document.querySelector('.liste-choix-Ing');
+    listIng.innerHTML = ''; // Effacer le contenu actuel de la liste
+    const listApp = document.querySelector('.liste-choix-App');
+    listApp.innerHTML = '';
+    const listUst =document.querySelector('.liste-choix-Ust');
+    listUst.innerHTML = '';
+
+    //appeler les functions ingredientsUniques,appareilsUniques, pour l'afficher 
+    ingredientsUniques.forEach(ingredient => {
+      const listItem = document.createElement("li");
+      listItem.textContent = ingredient;
+      listItem.classList.add("ingredient-item");
+      listIng.appendChild(listItem);
+    });
+    appareilsUniques.forEach(appareils => {
+      const listItem = document.createElement("li");
+      listItem.textContent = appareils;
+      listItem.classList.add("appareil-item");
+      listApp.appendChild(listItem);
+    });
+    ustensilesUniques.forEach(ustensiles => {
+      const listItem = document.createElement("li");
+      listItem.textContent = ustensiles;
+      listItem.classList.add("ustensiles-item");
+      listUst.appendChild(listItem);
+    });
+  }
+  // Appeler la fonction avec le terme de recherche ""
+  afficherListes("");
+//function search bar
    function searchBar(recipes, inputValue) {
      const messageError = document.querySelector(".message-error");
      const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/;
@@ -63,9 +118,8 @@ document.addEventListener("DOMContentLoaded", function() {
             //chaque tags soit dans ing ou app ou ust 
             uniqueTags.every(tag=>recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase())) ||
             recipe.ustensils.some(utensil => utensil.toLowerCase().includes(tag.toLowerCase())) ||
-            recipe.appliance.toLowerCase().includes(tag.toLowerCase()) )
-          ) ;
-
+            recipe.appliance.toLowerCase().includes(tag.toLowerCase()))
+          ) 
         });
         console.log(searchResults);
         console.log(uniqueTags);
@@ -192,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+ 
 
   displayOptions(ingredients, ".liste-choix-Ing");
   displayOptions(appliances, ".liste-choix-App");
