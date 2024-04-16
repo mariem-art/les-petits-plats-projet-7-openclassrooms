@@ -9,8 +9,11 @@ const tagsContainer = document.getElementById("nb-recette");
 const searchResultsIng = document.querySelector(".option-choix-Ing");
 const searchResultsApp = document.querySelector(".option-choix-App");
 const searchResultsUst = document.querySelector(".option-choix-Ust");
-document.addEventListener('DOMContentLoaded', function() {
 
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
   // Dropdown Ingrédients
   const iconIn = document.querySelector('.fa-solid.fa-chevron-up');
   const searchInputIn = document.getElementById('liste-choix-Ing');

@@ -119,12 +119,13 @@ main{
     position: absolute;
     border-radius: 5px;
     overflow: hidden;
+    width: 188px;
 } 
 .rotate {
     transform: rotate(180deg);
 }
 button.btn_drop{
-    width: 195px;
+    width:100%;
     border-radius: 11px;
     display: inline-flex;
     align-items: center;
@@ -136,7 +137,7 @@ button.btn_drop{
     padding: 17px 16px;
 }
 span#myDropdown {
-    margin-right: 62px;
+    margin-right:55px;
 }
 .liste-choix-App li ,.liste-choix-Ing li,.liste-choix-Ust li{
     font-family: Manrope;
@@ -145,12 +146,13 @@ span#myDropdown {
     line-height: 21.83px;
     color:#1B1B1B;
     padding: 8px 0;
+    list-style-type:none;
 }
 .liste-choix-App li:hover,.liste-choix-Ing li:hover ,.liste-choix-Ust li:hover {
     background:#FFD15B;
 
 }
-.liste-choix-App ul , .liste-choix-Ing ul ,.liste-choix-Ust ul{
+.liste-choix-App  , .liste-choix-Ing  ,.liste-choix-Ust {
     display: flex;
     flex-direction: column;
     height: 221px;
@@ -173,10 +175,9 @@ span#myDropdown {
     display: block;
     margin-left:-14px;
     margin-top: 10px;
-   
 }
 input#myInput-ing, input#myInput-App,input#myInput-Ust{
-   border:none;
+    border:none;
     height: 36px;
     border-radius: 2px;
     width: 137px;
@@ -204,7 +205,8 @@ input#myInput-ing, input#myInput-App,input#myInput-Ust{
   .search-input{
       position: relative;
       border:1px solid  Grey;
-      width: 163px;
+      width:100%;
+      display: block;
   }
 /************nb-recette*************/
 .nb-recette{
@@ -291,6 +293,9 @@ article{
     padding: 0 0 0 24px;
     margin:0;
 }
+li.liste.highlight{
+    background-color: rgba(255, 209, 91, 1);
+}
 .Liste{
     height: auto;
     font-family: Manrope;
@@ -350,6 +355,13 @@ article{
     display: flex;
     gap:50px;
 }
+i.fa-solid.fa-xmark.close-tag{
+    border-radius: 50%;
+    background:rgba(0, 0, 0, 1);
+    font-weight: 900;
+    width: 17px;
+    height: 17px;
+ }
 /* Small devices (phones, less than 1300px) */
 @media (max-width:1300px) {
     /***********titre-heder**********/
@@ -390,7 +402,7 @@ article{
     }
     /***********class-choix********/
     span#myDropdown {
-        margin-right: 51px;
+        margin-right:30%;
     }
      /***********choix-recette**********/
      .choix-recette{
@@ -458,7 +470,7 @@ article{
     }
     .class-choix{
         margin-bottom: 0;    }
-    
+   
     /***********nb-recette**********/
     .nb-recette{
         position: relative;
