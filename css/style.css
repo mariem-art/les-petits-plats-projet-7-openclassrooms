@@ -361,6 +361,15 @@ i.fa-solid.fa-xmark.close-tag{
     font-weight: 900;
     width: 17px;
     height: 17px;
+    position: relative;
+ }
+
+ i.fa-solid.fa-xmark.close-tag::before{
+  
+    color:rgba(255, 209, 91, 1); 
+    position: absolute;
+    top:0;
+    left:0;
  }
 /* Small devices (phones, less than 1300px) */
 @media (max-width:1300px) {

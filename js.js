@@ -254,40 +254,36 @@ document.addEventListener("DOMContentLoaded", function () {
    //inputUst.placeholder = "Rechercher par ustensile";
    //listUst.appendChild(inputUst);
    // Sélectionner les éléments conteneurs pour les listes d'ingrédients, d'ustensiles et d'appareils
-   const listIngContainer = document.querySelector(".liste-choix-Ing");
-   const listUstContainer = document.querySelector(".liste-choix-Ust");
-   const listAppContainer = document.querySelector(".liste-choix-App");
+   const inputIng = document.getElementById("myInput-ing");
+   const inputApp = document.getElementById("myInput-Ust");
+   const inputUst = document.getElementById("myInput-App");
 
 
    
-   // Fonction pour créer et ajouter un champ de recherche avec un titre spécifique
-   function addSearchInput(container, placeholderText, labelText) {
-   const label = document.createElement("label");
-   label.textContent = labelText;
-   const input = document.createElement("input");
-   input.setAttribute("type", "search");
-   input.classList.add("search-butt");
-   input.placeholder = placeholderText;
-   container.appendChild(label);
-   container.appendChild(input);
-  }
-   // Ajouter les champs de recherche pour les ingrédients, les ustensiles et les appareils
-   addSearchInput(listIngContainer, "Rechercher par ingrédient", "Ingrédients");
-   addSearchInput(listUstContainer, "Rechercher par ustensile", "Ustensiles");
-   addSearchInput(listAppContainer, "Rechercher par appareil", "Appareils");
+   inputIng.addEventListener("input", function(event) {
+     const searchText = event.target.value.trim().toLowerCase();
+     // Filtrer les ingrédients en fonction de la recherche
+     const filteredIngredients = ingredients.filter(ingredient => ingredient.toLowerCase().includes(searchText));
+     // Afficher les résultats filtrés
+     afficherListeUnique(filteredIngredients, ".liste-choix-Ing", ".option-choix-Ing");
+    });
+   
 
 
-
-   //  // Écouteur d'événement pour le champ de recherche d'ingrédients
-   //  inputIng.addEventListener("input", function(event) {
-   //  const searchText = event.target.value.trim().toLowerCase();
-   //  // Filtrer les ingrédients en fonction de la recherche
-   //  const filteredIngredients = ingredients.filter(ingredient => ingredient.toLowerCase().includes(searchText));
-   //  // Afficher les résultats filtrés
-   //  afficherListeUnique(filteredIngredients, ".liste-choix-Ing", ".option-choix-Ing");
-   //   });
-
-  //  
+    inputApp.addEventListener("input", function(event) {
+    const searchText = event.target.value.trim().toLowerCase();
+    // Filtrer les appareils en fonction de la recherche
+    const filteredAppliances = appliances.filter(appliance => appliance.toLowerCase().includes(searchText));
+    // Afficher les résultats filtrés
+    afficherListeUnique(filteredAppliances, ".liste-choix-App", ".option-choix-App");
+   });
+     inputUst.addEventListener("input", function(event) {
+     const searchText = event.target.value.trim().toLowerCase();
+     // Filtrer les ustensiles en fonction de la recherche
+     const filteredUtensils = utensils.filter(utensil => utensil.toLowerCase().includes(searchText));
+     // Afficher les résultats filtrés
+     afficherListeUnique(filteredUtensils, ".liste-choix-Ust", ".option-choix-Ust");
+    });
      //***************************************************************************//
     //appeler les functions ingredientsUniques,appareilsUniques, pour l'afficher//
     //**************************************************************************//
