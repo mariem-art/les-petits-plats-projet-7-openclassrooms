@@ -1,18 +1,4 @@
 //const
-const recipeContainer = document.getElementById("recipeContainer");
-const inputSuggestion = document.querySelectorAll("little-search");
-const clearInput = document.getElementById("clearInput");
-const clearIcon = document.querySelector("btn.btn-outline-success");
-const messageError = document.querySelector(".message-error");
-const recipeCountElement = document.getElementById("recipeCount");
-const tagsContainer = document.getElementById("nb-recette");
-const searchResultsIng = document.querySelector(".option-choix-Ing");
-const searchResultsApp = document.querySelector(".option-choix-App");
-const searchResultsUst = document.querySelector(".option-choix-Ust");
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   // Dropdown Ingrédients
   const iconIn = document.querySelector('.fa-solid.fa-chevron-up');
@@ -46,6 +32,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
-
