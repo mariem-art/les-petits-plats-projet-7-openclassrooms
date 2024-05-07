@@ -50,16 +50,28 @@ form.d-flex{
     height: 72px;
     border:none;
     position: relative;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 11px;
 }
-.form-control{
-    width: 954px;
-    height: 72px;
+.form-control {
+    width: 93%!important;
+    height: 100%;
+    background:  rgba(255, 255, 255, 1);
+    box-shadow: none!important;
 }
+.form-control:focus{
+    background:  rgba(255, 255, 255, 1)!important;
+    box-shadow: none!important;
+    border:none!important;
+}
+
 input.form-control::placeholder{
     color: #7A7A7A;
     font-size: 16px;
     line-height: 21.86px;
     margin:24px 0 0 35px;
+   
+    
 }
 button.btn.btn-outline-success{
     width: 51px;
@@ -87,7 +99,6 @@ button.btn.btn-outline-success:hover{
     bottom: 25%;
     color:#FFD15B ;
 }
-
 .choix-tout{
     float: left;
     display: flex;
@@ -96,14 +107,10 @@ button.btn.btn-outline-success:hover{
     top: 60px;
     right: 300px;
     background:white;
-   
 }
-.choix-tout ul {
+.liste ul {
     list-style-type: none;
 }
-
-
-
 /**************main******************/
 main{
     padding:14px 24px;
@@ -119,13 +126,13 @@ main{
     position: absolute;
     border-radius: 5px;
     overflow: hidden;
-    width: 188px;
+    width: 195px;
 } 
 .rotate {
     transform: rotate(180deg);
 }
 button.btn_drop{
-    width:100%;
+    width:195px;
     border-radius: 11px;
     display: inline-flex;
     align-items: center;
@@ -176,11 +183,13 @@ span#myDropdown {
     margin-left:-14px;
     margin-top: 10px;
 }
-input#myInput-ing, input#myInput-App,input#myInput-Ust{
+input#myInput {
+    border:none;
+}
+input#myInput-ing, input#myInput-app,input#myInput-ust{
     border:none;
     height: 36px;
-    border-radius: 2px;
-    width: 137px;
+    width: 117px;
     margin-left: 0;
     font-family: Manrope;
     font-weight: 400;
@@ -188,6 +197,7 @@ input#myInput-ing, input#myInput-App,input#myInput-Ust{
     color:#7A7A7A; 
     line-height:19.12px;
     position: relative;
+    border:none!important;
 }
 .liste-choix-Ust, .liste-choix-App,.liste-choix-Ing{
     display: none;
@@ -204,8 +214,8 @@ input#myInput-ing, input#myInput-App,input#myInput-Ust{
   }
   .search-input{
       position: relative;
-      border:1px solid  Grey;
-      width:100%;
+      border:1px solid Grey;
+      width:147px;
       display: block;
   }
 /************nb-recette*************/
@@ -283,6 +293,7 @@ article{
     line-height: 16.93px;
     letter-spacing: 1px;
     padding: 0 0 0 24px;
+    letter-spacing:.2rem;
 }
 .descreption p{
     font-family: manrope;
@@ -292,6 +303,8 @@ article{
     color:#1B1B1B;
     padding: 0 0 0 24px;
     margin:0;
+    height:107px;
+    overflow: auto;
 }
 li.liste.highlight{
     background-color: rgba(255, 209, 91, 1);
@@ -313,7 +326,8 @@ li.liste.highlight{
    flex-wrap: wrap;
    margin:0;
    list-style-type:none;
-   padding-left: 14px;
+   padding-left: 1em!important;
+
 }
 .Liste li {
     font-family: Manrope;
@@ -323,7 +337,6 @@ li.liste.highlight{
     color:#1B1B1B;
     text-transform: initial;
     width: 48%;
-    margin-left:-15px;
     list-style-type:none;
 }
 .Liste p.quantie{
@@ -355,9 +368,9 @@ li.liste.highlight{
     display: flex;
     gap:50px;
 }
-i.fa-solid.fa-xmark.close-tag{
+.tag i.fa-solid.fa-xmark.close-tag{
     border-radius: 50%;
-    background:rgba(0, 0, 0, 1);
+    background: rgba(255, 209, 91, 1);
     font-weight: 900;
     width: 17px;
     height: 17px;
@@ -365,11 +378,19 @@ i.fa-solid.fa-xmark.close-tag{
  }
 
  i.fa-solid.fa-xmark.close-tag::before{
-  
-    color:rgba(255, 209, 91, 1); 
+    color:rgba(0, 0, 0, 1); 
     position: absolute;
-    top:0;
-    left:0;
+    top:2px;
+    left:4px;
+ }
+ 
+ .close-tag:hover{
+    background: rgba(0, 0, 0, 1);
+    z-index: 0;
+ }
+ .close-tag::before:hover{
+    color:rgba(255, 209, 91, 1); 
+    z-index: 10;
  }
 /* Small devices (phones, less than 1300px) */
 @media (max-width:1300px) {
@@ -391,17 +412,17 @@ i.fa-solid.fa-xmark.close-tag{
     article,.img {
         width: 333px;
         }
-      
-
 }
 /* Small devices (phones, less than 1190px) */
 @media (max-width:1190px) {
 
  /***********titre-heder**********/
-
  .titre-header h1 {
     font-size: 35px;
     line-height: 58.24px;
+    }
+    .titre-header {
+        left: 16%;
     }
     form.d-flex {
         width: 700px;
@@ -412,6 +433,9 @@ i.fa-solid.fa-xmark.close-tag{
     /***********class-choix********/
     span#myDropdown {
         margin-right:30%;
+    }
+    .dropdown{
+        margin:0 auto 20px;
     }
      /***********choix-recette**********/
      .choix-recette{
@@ -425,6 +449,12 @@ i.fa-solid.fa-xmark.close-tag{
 
     }
 
+}
+/* Small devices (phones, less than 992px) */
+@media (max-width:992px) {
+    article, .img {
+        width:360px;
+    }
 }
 /* Small devices (phones, less than 778px) */
 @media (max-width:778px) {
@@ -440,28 +470,46 @@ i.fa-solid.fa-xmark.close-tag{
     }
     /***********choix-recette**********/
     article, .img {
-        width: 316px;
+        width: 350px;
     }
     .nb-recette{
         right: 16px;
     }
+    .col-md-4{
+    width: 30%!important;
+    }
 }
 /* Small devices (phones, less than 755px) */
 @media (max-width:755px) {
-     /***********titre-heder**********/
-     form.d-flex {
-        width: 369px;
-        height: 43px;
+
+    .logo {
+        width: 105px;
+        left: 158px;
     }
+     /***********titre-heder**********/
+     .search{
+        bottom: 5%;
+        left:3%;
+     }
+     form.d-flex {
+        width: 500px;
+        height:68px;
+    }
+    button.btn.btn-outline-success{
+        margin-top:9px;
+    }
+    
     .titre-header h1 {
         line-height: 30px;
         font-size: 25px;
     }
     .titre-header{
-        left: 15%;
+        left:7%;
     }
     /***********class-choix**********/
-
+    .dropdown{
+        margin:40px auto 0;
+    }
     .dropdown{
         margin-bottom: 20px;
     }
@@ -469,7 +517,7 @@ i.fa-solid.fa-xmark.close-tag{
         width: 100%;
     }
     span#myDropdown {
-        margin-right: 230px;
+        margin-right: 44px;
     }
     span.fa-solid.fa-chevron-up.App{
         margin-left: 2px;
@@ -482,23 +530,85 @@ i.fa-solid.fa-xmark.close-tag{
    
     /***********nb-recette**********/
     .nb-recette{
-        position: relative;
-        right: 0;
-        top: 0;
-
+       float: right;
+       top:0px;
+       height: 30px;
     }
-
+    /* span#myDropdown\ app {
+        margin-right: 55px;
+    } */
+    .dropdown{
+        margin-bottom: 0;
+    }
     .choix-recette {
         grid-template-columns: repeat(1,3fr);
+        margin:0 auto;
     
     }
-    article, .img {
-        width: 100%;
-        margin: 0 auto;
+    article{
+        width:350px;
+        margin:0 auto;
+    }
+    article.img{
+        width:350px;  
     }
 
 }
+/* Small devices (phones, less than 633px) */
+@media (max-width:633px) {
+    form.d-flex{
+        width: 450px;
+    }
+    .tag{
+        margin:10px auto;
+        width: 210px;
+    } 
+    .row{
+        --bs-gutter-x: -6.5rem!important;
+    }
+    input#myInput::placeholder{
+        font-size: 12px;
+    }
+    
+}
 /* Small devices (phones, less than 480px) */
 @media (max-width:480px) {
-
+    main{
+        padding:0;
+    }
+    .logo{
+        left: 114px;
+    }
+    .titre-header {
+        left: 2%;
+    }
+    
+    .titre-header h1 {
+        line-height: 22px;
+        font-size: 17px;
+    }
+    .search{
+        left:2%;
+    }
+    form.d-flex {
+        width:263px;
+        height: 49px;
+    }
+    .form-control::placeholder{
+        font-size: 11px;
+    }
+    button.btn.btn-outline-success {
+     width: 50px;
+     height: 32px;
+    }
+    .choix-recette{
+        margin:0;
+    }
+    article{
+     width: 300px;
+     }
+    .img{
+     width: 300px;  
+     margin-bottom: 20px;
+    }
 }
