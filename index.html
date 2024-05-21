@@ -1,109 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="./css/style.css" rel="stylesheet" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;1,9..40,700&family=Raleway:wght@400;500;700&family=Roboto:ital,wght@0,300;0,500;0,700;1,400&family=Shrikhand&display=swap"rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,400;0,700;1,700&family=Raleway:wght@400;500;700&family=Roboto:ital,wght@0,300;0,500;0,700;1,400&family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>lES-PETITS-PLATS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>LES-PETITS-PLATS</title>
   </head>
   <body>
     <header>
-        <div class="header-tout">
-        <img src="assets/lampos-aritonang-24gR_9lCdes-unsplash 1.png" class="image-header" alt=""/>
+      <div class="header-tout">
+        <img src="assets/lampos-aritonang-24gR_9lCdes-unsplash 1.png" class="image-header" alt="Header Image"/>
         <div class="logo">
-            <img src="assets/Logo.png" class="logo-header" alt=""/>
+          <img src="assets/Logo.png" class="logo-header" alt="Logo"/>
         </div>
         <div class="titre-header">
-           <h1> CHERCHEZ PARMI PLUS DE 1500 RECETTES<br> DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+          <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES<br> DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
         </div>
         <div class="search">
           <form class="d-flex" role="search">
-            <input class="form-control" type="search"  id ="myInput" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Search" minlength="3">
-            
-            <button class="btn btn-outline-success" type="button" id="btn-search"><i class="fa fa-search"></i> 
-           
-            </button>
+            <input class="form-control" type="search" id="myInput" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Search"  minlength="3" >
+            <button class="btn btn-outline-success" type="button" id="btn-search"><i class="fa fa-search"></i></button>
           </form>
         </div>
         <div class="message-error container"></div>
-    </div>
+      </div>
     </header>
     <main id="main">
       <div class="class-choix">
-      <div class="row">
-        <div class="col-lg-3  col-md-12 col-sm-12 col-xs-12 ">
-              <div class="dropdown top">
-                <div id="myDropdown" class="dropdown-content">
-                  <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
-                      <span id="myDropdown">Ingrédients</span>
-                      <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
-                      <div class="liste-choix-Ing" id="liste-choix-Ing">
-                        <div class="search-input">
-                      <input type="search" id="myInput-ing"  class="Button little-search" >
-                      <i class= "fa fa-search"></i></div>
-                      <div class="option-choix-Ing" id="option-choix-Ing"></div>
-                    </div>
-                  </button>
+        <div class="row">
+          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="dropdown top">
+              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Ingredients">
+                <span>Ingrédients</span>
+                <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                <div class="liste-choix-Ing" id="liste-choix-Ing">
+                  <div class="search-input">
+                    <input type="search" id="myInput-ing" class="Button little-search" aria-label="Search Ingredients">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="option-choix-Ing" id="option-choix-Ing"></div>
                 </div>
-                </div>
+              </button>
+            </div>
           </div>
           <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="dropdown">
-              <div id="myDropdown" class="dropdown-content">
-                <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
-                    <span id="myDropdown">Appareils</span>
-                    <span class="fa-solid fa-chevron-up App" aria-hidden="true"></span>
-                    <div class="liste-choix-App" id="liste-choix-App"> 
-                      <div class="search-input">
-                      <input type="search" id="myInput-app"  class="Button little-search">
-                      <i class= "fa fa-search"></i></div>
-                    <div class="option-choix-App" id="option-choix-App"></div>
-                    </div>
-                </button>
-              </div>
-              </div>
-            </div>
-        <div class="col-lg-3  col-md-12 col-sm-12  col-xs-12 ">
-          <div class="dropdown">
-            <div id="myDropdown" class="dropdown-content">
-              <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
-                  <span id="myDropdown">Ustensiles</span>
-                  <span class="fa-solid fa-chevron-up Ust" aria-hidden="true"></span>
-                   <div class="liste-choix-Ust" id="liste-choix-Ust">
-                    <div class="search-input">
-                   <input type="search" placeholder="" id="myInput-ust" class="Button little-search" >
-                   <i class= "fa fa-search"></i></div>
-                   <div class="option-choix-Ust" id="option-choix-Ust"></div>
-                   </div>
+              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Appliances">
+                <span>Appareils</span>
+                <span class="fa-solid fa-chevron-up App" aria-hidden="true"></span>
+                <div class="liste-choix-App" id="liste-choix-App">
+                  <div class="search-input">
+                    <input type="search" id="myInput-app" class="Button little-search" aria-label="Search Appliances">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="option-choix-App" id="option-choix-App"></div>
+                </div>
               </button>
             </div>
+          </div>
+          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="dropdown">
+              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Utensils">
+                <span>Ustensiles</span>
+                <span class="fa-solid fa-chevron-up Ust" aria-hidden="true"></span>
+                <div class="liste-choix-Ust" id="liste-choix-Ust">
+                  <div class="search-input">
+                    <input type="search" id="myInput-ust" class="Button little-search" aria-label="Search Utensils">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="option-choix-Ust" id="option-choix-Ust"></div>
+                </div>
+              </button>
             </div>
+          </div>
+        </div>
+        <div class="filter"></div>
+        <div class="nb-recette">
+          <span class="nb" id="nb"></span><p>recettes</p>
+        </div>
       </div>
-      </div>
-      <div class="filter"></div>
-      <div class="nb-recette">
-        <span class="nb" id="nb"> </span><p>recettes</p>
-      </div>
-      </div>
-  
-      <div class="choix-recette" id="choix-recette">
-      </div>
-        </main>
-        <script src="./recettes.js"></script>
-        <script src ="./value.js"></script>
-        <script src="./script.js"></script>
-        <script src ="./search.js"></script>
-        <script src="./index.js"></script>
-    </body>
-    </html>
+      <div class="choix-recette" id="choix-recette"></div>
+    </main>
+    <script src="./recettes.js"></script>
+    <script src="./value.js"></script>
+    <script src="./script.js"></script>
+    <script src="./search.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
