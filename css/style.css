@@ -146,6 +146,9 @@ button.btn_drop{
 span#myDropdown {
     margin-right:55px;
 }
+span.fa-solid.fa-chevron-up{
+    margin-left: 20px;
+}
 .liste-choix-App li ,.liste-choix-Ing li,.liste-choix-Ust li{
     font-family: Manrope;
     font-size: 14px;
@@ -526,7 +529,8 @@ li.liste.highlight{
         margin-left: 9px;
     }
     .class-choix{
-        margin-bottom: 0;    }
+        margin-bottom: 0; 
+    }
    
     /***********nb-recette**********/
     .nb-recette{
