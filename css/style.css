@@ -156,12 +156,8 @@ span#myDropdown {
 }
 .liste-choix-App li:hover,.liste-choix-Ing li:hover ,.liste-choix-Ust li:hover {
     background:#FFD15B;
+}
 
-}
-div#liste-choix-Ust,div#liste-choix-App,div#liste-choix-Ing{
-    padding: 0 16px  11px ;
-    margin-top: -12px;
-}
 span.fa-solid.fa-chevron-up{
     margin-left: 30px;
 }
@@ -173,6 +169,8 @@ span.fa-solid.fa-chevron-up{
     text-align: left;
     overflow: auto;
     list-style-type:none;
+    padding: 0 16px 11px 11px ;
+    margin-top: -12px;
 }
 .liste-choix-App ul , .liste-choix-Ing ul ,.liste-choix-Ust ul{
     list-style-type:none;
@@ -188,6 +186,7 @@ span.fa-solid.fa-chevron-up{
     display: block;
     margin-left:-14px;
     margin-top: 10px;
+    
 }
 input#myInput {
     border:none;
