@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,400;0,700;1,700&family=Raleway:wght@400;500;700&family=Roboto:ital,wght@0,300;0,500;0,700;1,400&family=Shrikhand&display=swap" rel="stylesheet">
@@ -16,9 +16,11 @@
   <body>
     <header>
       <div class="header-tout">
-        <img src="assets/lampos-aritonang-24gR_9lCdes-unsplash 1.png" class="image-header" alt="Header Image"/>
+        <img src="assets/lampos-aritonang-24gR_9lCdes-unsplash1.png" class="image-header" alt="image-header">
+  
         <div class="logo">
-          <img src="assets/Logo.png" class="logo-header" alt="Logo"/>
+          <img alt="Logo" src="assets/Logo.png" class="logo-header">
+
         </div>
         <div class="titre-header">
           <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES<br> DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
@@ -37,47 +39,50 @@
         <div class="row">
           <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="dropdown top">
-              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Ingredients">
+              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false">
                 <span>Ingrédients</span>
                 <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+              </button>
                 <div class="liste-choix-Ing" id="liste-choix-Ing">
                   <div class="search-input">
-                    <input type="search" id="myInput-ing" class="Button little-search" aria-label="Search Ingredients">
+                    <input type="search" id="myInput-ing">
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="option-choix-Ing" id="option-choix-Ing"></div>
                 </div>
-              </button>
+             
             </div>
           </div>
           <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="dropdown">
-              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Appliances">
+              <button class="btn_drop" type="button">
                 <span>Appareils</span>
                 <span class="fa-solid fa-chevron-up App" aria-hidden="true"></span>
+              </button>
                 <div class="liste-choix-App" id="liste-choix-App">
                   <div class="search-input">
-                    <input type="search" id="myInput-app" class="Button little-search" aria-label="Search Appliances">
+                    <input type="search" id="myInput-app">
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="option-choix-App" id="option-choix-App"></div>
                 </div>
-              </button>
+              
             </div>
-          </div>
+        </div>
           <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="dropdown">
-              <button class="btn_drop" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by Utensils">
+              <button class="btn_drop" type="button">
                 <span>Ustensiles</span>
                 <span class="fa-solid fa-chevron-up Ust" aria-hidden="true"></span>
+              </button>
                 <div class="liste-choix-Ust" id="liste-choix-Ust">
                   <div class="search-input">
-                    <input type="search" id="myInput-ust" class="Button little-search" aria-label="Search Utensils">
+                    <input type="search" id="myInput-ust">
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="option-choix-Ust" id="option-choix-Ust"></div>
                 </div>
-              </button>
+              
             </div>
           </div>
         </div>
@@ -91,7 +96,7 @@
     <script src="./recettes.js"></script>
     <script src="./value.js"></script>
     <script src="./script.js"></script>
-    <script src="./search.js"></script>
+    <script src="./js.js"></script>
     <script src="./index.js"></script>
   </body>
-</html>
+  </html>
