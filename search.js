@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const searchResults = recipes.filter(recipe => {
            return (
              recipe.name.toLowerCase().includes(inputValue) ||
-             recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue)) ||
-             recipe.ustensils.some(utensil => utensil.toLowerCase().includes(inputValue)) ||
-             recipe.appliance.toLowerCase().includes(inputValue) 
+             recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue))
             ) && (
              //chaque tags soit dans ing ou app ou ust 
              uniqueTags.every(tag=>recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase())) ||
