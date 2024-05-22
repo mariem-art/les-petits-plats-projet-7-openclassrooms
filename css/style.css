@@ -70,8 +70,6 @@ input.form-control::placeholder{
     font-size: 16px;
     line-height: 21.86px;
     margin:24px 0 0 35px;
-   
-    
 }
 button.btn.btn-outline-success{
     width: 51px;
@@ -127,6 +125,7 @@ main{
     border-radius: 5px;
     overflow: hidden;
     width: 195px;
+    border-radius:11px;
 } 
 .rotate {
     transform: rotate(180deg);
@@ -157,7 +156,10 @@ span#myDropdown {
 }
 .liste-choix-App li:hover,.liste-choix-Ing li:hover ,.liste-choix-Ust li:hover {
     background:#FFD15B;
+}
 
+span.fa-solid.fa-chevron-up{
+    margin-left: 30px;
 }
 .liste-choix-App  , .liste-choix-Ing  ,.liste-choix-Ust {
     display: flex;
@@ -167,6 +169,8 @@ span#myDropdown {
     text-align: left;
     overflow: auto;
     list-style-type:none;
+    padding: 0 16px 11px 11px ;
+    margin-top: -12px;
 }
 .liste-choix-App ul , .liste-choix-Ing ul ,.liste-choix-Ust ul{
     list-style-type:none;
@@ -182,6 +186,7 @@ span#myDropdown {
     display: block;
     margin-left:-14px;
     margin-top: 10px;
+    
 }
 input#myInput {
     border:none;
