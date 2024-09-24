@@ -8,6 +8,7 @@ body {
 .header-tout {
     position: relative;
     width: 100%;
+    height: 500px;
 }
 img, svg{
     width: 100%;
